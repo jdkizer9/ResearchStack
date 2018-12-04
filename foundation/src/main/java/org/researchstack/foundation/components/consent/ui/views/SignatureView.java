@@ -79,7 +79,7 @@ public class SignatureView extends View {
         TypedArray a = context.obtainStyledAttributes(attrs,
                 R.styleable.SignatureView,
                 defStyleAttr,
-                R.style.Widget_Backbone_SignatureView);
+                R.style.Widget_Foundation_SignatureView);
 
         int signatureColor = a.getColor(R.styleable.SignatureView_signatureColor, Color.BLACK);
 

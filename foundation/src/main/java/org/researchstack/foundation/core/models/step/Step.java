@@ -6,15 +6,15 @@ import java.io.Serializable;
 
 /**
  * Step is the base class for the steps that can compose a task for presentation in an {@link
- * org.researchstack.backbone.ui.ViewTaskActivity} object. Each Step object represents one logical
+ * org.researchstack.foundation.ui.ViewTaskActivity} object. Each Step object represents one logical
  * piece of data entry or activity in a larger task.
  * <p>
  * A step can be a question, an active test, or a simple instruction. An Step subclass is usually
- * paired with an {@link org.researchstack.backbone.ui.step.layout.StepLayout} subclass that
+ * paired with an {@link org.researchstack.foundation.ui.step.layout.StepLayout} subclass that
  * displays the step.
  * <p>
  * To use a step, instantiate an Step object and populate its properties. Add the step to a task,
- * such as an {@link org.researchstack.backbone.task.OrderedTask} object, and then present the task
+ * such as an {@link org.researchstack.foundation.task.OrderedTask} object, and then present the task
  * using a ViewTaskActivity.
  * <p>
  * To implement a new type of step, subclass Step and add your additional properties. Separately,
@@ -66,7 +66,7 @@ public class Step implements Serializable {
      * A short string that uniquely identifies the step within the task.
      * <p>
      * The identifier is reproduced in the results of a step. In fact, the only way to link a result
-     * (a {@link org.researchstack.backbone.result.StepResult} object) to the step that generated it
+     * (a {@link org.researchstack.foundation.result.StepResult} object) to the step that generated it
      * is to look at the value of <code>identifier</code>. To accurately identify step results, you
      * need to ensure that step identifiers are unique within each task.
      * <p>
@@ -166,7 +166,7 @@ public class Step implements Serializable {
     }
 
     /**
-     * Returns the class that the {@link org.researchstack.backbone.ui.ViewTaskActivity} should
+     * Returns the class that the {@link org.researchstack.foundation.ui.ViewTaskActivity} should
      * instantiate to display this step.
      * <p>
      * This method is used within the framework so that steps can define their step view controller
@@ -175,7 +175,7 @@ public class Step implements Serializable {
      * Outside the framework, developers should instantiate the required view controller in their
      * ViewTaskActivity delegate to override the ViewTaskActivity's default.
      *
-     * @return the class of the {@link org.researchstack.backbone.ui.step.layout.StepLayout} for
+     * @return the class of the {@link org.researchstack.foundation.ui.step.layout.StepLayout} for
      * this step
      */
     public Class getStepLayoutClass() {
@@ -185,7 +185,7 @@ public class Step implements Serializable {
     /**
      * Sets the class that should be used to display this step
      *
-     * @param stepLayoutClass the {@link org.researchstack.backbone.ui.step.layout.StepLayout} class
+     * @param stepLayoutClass the {@link org.researchstack.foundation.ui.step.layout.StepLayout} class
      *                        to be used to display this step
      */
     public void setStepLayoutClass(Class stepLayoutClass) {

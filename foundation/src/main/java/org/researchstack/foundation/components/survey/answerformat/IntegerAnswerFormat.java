@@ -9,7 +9,7 @@ import org.researchstack.foundation.components.utils.TextUtils;
  * numeric keyboard.
  * <p>
  * If you specify maximum or minimum values and the user enters a value outside the specified range,
- * the {@link org.researchstack.backbone.ui.step.body.IntegerQuestionBody} does not allow navigation
+ * the {@link org.researchstack.foundation.ui.step.body.IntegerQuestionBody} does not allow navigation
  * until the participant provides a value that is within the valid range.
  */
 public class IntegerAnswerFormat extends AnswerFormat {

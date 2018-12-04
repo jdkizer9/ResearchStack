@@ -27,7 +27,7 @@ import java.util.List;
  * If {@link StorageAccessListener#onDataAuth()} is called, then you must prompt the user for their
  * pin and authenticate using {@link #authenticate}.
  * <p>
- * {@link org.researchstack.backbone.ui.PinCodeActivity} handles almost all of this for you,
+ * {@link org.researchstack.foundation.ui.PinCodeActivity} handles almost all of this for you,
  * including presenting the pin code screen to the user. PinCodeActivity should be used, extended,
  * or it's fuctionality copied to your application's own base Activity. Make sure to delay any data
  * access until {@link PinCodeActivity#onDataReady()} has been called.

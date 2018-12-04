@@ -3,8 +3,8 @@ package org.researchstack.foundation.components.storage.file.aes;
 import java.security.GeneralSecurityException;
 
 /**
- * Implement this class and use in your {@link org.researchstack.backbone.storage.file.EncryptionProvider}
- * to encrypt/decrypt all date before it is written using {@link org.researchstack.backbone.storage.file.FileAccess}.
+ * Implement this class and use in your {@link org.researchstack.foundation.storage.file.EncryptionProvider}
+ * to encrypt/decrypt all date before it is written using {@link org.researchstack.foundation.storage.file.FileAccess}.
  */
 public interface Encrypter {
     /**

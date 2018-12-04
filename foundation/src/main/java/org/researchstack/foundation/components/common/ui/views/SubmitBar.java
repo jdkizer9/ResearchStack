@@ -38,7 +38,7 @@ public class SubmitBar extends LinearLayout {
         TypedArray a = context.obtainStyledAttributes(attrs,
                 R.styleable.SubmitBar,
                 defStyleAttr,
-                R.style.Widget_Backbone_SubmitBar);
+                R.style.Widget_Foundation_SubmitBar);
 
         setBackground(a.getDrawable(R.styleable.SubmitBar_android_background));
 

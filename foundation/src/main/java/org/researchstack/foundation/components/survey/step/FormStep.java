@@ -12,7 +12,7 @@ import java.util.List;
  * To use FormStep, instantiate the object, give it a list of {@link QuestionStep}s, and include it
  * in a task.
  * <p>
- * The result of a form step is an {@link org.researchstack.backbone.result.StepResult} object that
+ * The result of a form step is an {@link org.researchstack.foundation.result.StepResult} object that
  * includes a child StepResult object for each form item.
  */
 public class FormStep extends QuestionStep {

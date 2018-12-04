@@ -73,7 +73,7 @@ public class ConsentSection implements Serializable {
      * A custom illustration for the consent.
      * <p>
      * The custom image can override the image associated with any of the predefined section types
-     * for an {@link org.researchstack.backbone.step.ConsentVisualStep} object. It is ignored for a
+     * for an {@link org.researchstack.foundation.step.ConsentVisualStep} object. It is ignored for a
      * consent review step and for PDF generation.
      * <p>
      * The image is used in template rendering mode, and is tinted using the tint color.

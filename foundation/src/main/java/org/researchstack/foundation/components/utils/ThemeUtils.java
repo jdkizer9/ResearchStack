@@ -38,7 +38,7 @@ public class ThemeUtils {
                 new int[]{R.attr.passcodeTheme});
         int themeResId = a.getResourceId(0, 0);
         if (themeResId == 0) {
-            throw new RuntimeException("Theme must define attribute passCodeTheme or extend from @style/Base.Theme.Backbone");
+            throw new RuntimeException("Theme must define attribute passCodeTheme or extend from @style/Base.Theme.Foundation");
         }
 
         a.recycle();

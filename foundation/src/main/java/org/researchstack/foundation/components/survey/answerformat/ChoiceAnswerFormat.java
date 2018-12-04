@@ -24,7 +24,7 @@ public class ChoiceAnswerFormat extends AnswerFormat {
 
     /**
      * Returns a multiple choice or single choice question type, which will decide which {@link
-     * org.researchstack.backbone.ui.step.body.StepBody} to use to display this question.
+     * org.researchstack.foundation.ui.step.body.StepBody} to use to display this question.
      *
      * @return the question type for this answer format
      */
