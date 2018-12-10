@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
@@ -24,7 +25,7 @@ import org.researchstack.foundation.core.models.task.Task;
 import java.lang.reflect.Constructor;
 import java.util.Date;
 
-public class ViewTaskActivity extends PinCodeActivity implements StepCallbacks {
+public class ViewTaskActivity extends AppCompatActivity implements StepCallbacks {
     public static final String EXTRA_TASK = "ViewTaskActivity.ExtraTask";
     public static final String EXTRA_TASK_RESULT = "ViewTaskActivity.ExtraTaskResult";
     public static final String EXTRA_STEP = "ViewTaskActivity.ExtraStep";
@@ -156,6 +157,12 @@ public class ViewTaskActivity extends PinCodeActivity implements StepCallbacks {
     protected void onResume() {
         super.onResume();
         task.onViewChange(Task.ViewChangeType.ActivityResume, this, currentStep);
+
+        if (currentStep == null) {
+            currentStep = task.getStepAfterStep(null, taskResult);
+        }
+
+        showStep(currentStep);
     }
 
     @Override
@@ -192,23 +199,23 @@ public class ViewTaskActivity extends PinCodeActivity implements StepCallbacks {
         currentStepLayout.isBackEventConsumed();
     }
 
-    @Override
-    public void onDataReady() {
-        super.onDataReady();
-
-        if (currentStep == null) {
-            currentStep = task.getStepAfterStep(null, taskResult);
-        }
-
-        showStep(currentStep);
-    }
-
-    @Override
-    public void onDataFailed() {
-        super.onDataFailed();
-        Toast.makeText(this, R.string.rsf_error_data_failed, Toast.LENGTH_LONG).show();
-        finish();
-    }
+//    @Override
+//    public void onDataReady() {
+//        super.onDataReady();
+//
+//        if (currentStep == null) {
+//            currentStep = task.getStepAfterStep(null, taskResult);
+//        }
+//
+//        showStep(currentStep);
+//    }
+//
+//    @Override
+//    public void onDataFailed() {
+//        super.onDataFailed();
+//        Toast.makeText(this, R.string.rsf_error_data_failed, Toast.LENGTH_LONG).show();
+//        finish();
+//    }
 
     @Override
     public void onSaveStep(int action, Step step, StepResult result) {

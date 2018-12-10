@@ -6,7 +6,7 @@
 
     <include layout="@layout/rsf_layout_toolbar" />
 
-    <org.researchstack.foundation.ui.views.StepSwitcher
+    <org.researchstack.foundation.components.common.ui.views.StepSwitcher
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
