@@ -1,4 +1,4 @@
-package org.researchstack.foundation.components.authentication
+package org.researchstack.feature.authentication
 
 import android.support.v4.os.CancellationSignal
 
@@ -8,7 +8,7 @@ open abstract class Authenticator<Result: Authenticator.AuthenticationResult, Ca
 
     }
 
-    open class AuthenticationCallback<Result: Authenticator.AuthenticationResult> {
+    open class AuthenticationCallback<Result: AuthenticationResult> {
         open fun onAuthenticationError(errorCode: Int, errString: String) {}
 
         open fun onAuthenticationFailed() {}

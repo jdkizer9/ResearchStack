@@ -1,4 +1,4 @@
-package org.researchstack.foundation.components.authentication.pincode.ui
+package org.researchstack.feature.authentication.pincode.ui
 
 import android.content.Context
 import android.graphics.Color
@@ -13,8 +13,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import com.jakewharton.rxbinding.widget.RxTextView
-import org.researchstack.foundation.R
-import org.researchstack.foundation.components.authentication.pincode.PasscodeAuthenticator
+import org.researchstack.feature.authentication.R
+import org.researchstack.feature.authentication.pincode.PasscodeAuthenticator
 import org.researchstack.foundation.components.utils.ObservableUtils
 import org.researchstack.foundation.components.utils.ThemeUtils
 import rx.Observable
@@ -89,7 +89,7 @@ open class PasscodeAuthenticationFragment: Fragment() {
             }.compose(ObservableUtils.applyDefault()).doOnError { throwable ->
                 this.toggleKeyboardAction?.invoke(true)
                 throwable.printStackTrace()
-                summary.setText(R.string.rsf_pincode_enter_error)
+                summary.setText(R.string.rsfa_pincode_enter_error)
                 summary.setTextColor(errorColor)
                 pinCodeLayout.showProgress(false)
             }.onErrorResumeNext { throwable1 -> Observable.empty() }

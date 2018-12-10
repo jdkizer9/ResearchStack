@@ -1,4 +1,4 @@
-package org.researchstack.foundation.components.authentication.pincode
+package org.researchstack.feature.authentication.pincode
 
 public class PinCodeConfigProvider() {
     companion object {

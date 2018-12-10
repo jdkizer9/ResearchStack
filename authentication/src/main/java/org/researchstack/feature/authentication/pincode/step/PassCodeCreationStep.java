@@ -1,6 +1,6 @@
-package org.researchstack.foundation.components.authentication.pincode.step;
+package org.researchstack.feature.authentication.pincode.step;
 
-import org.researchstack.foundation.components.authentication.pincode.ui.SignUpPinCodeCreationStepLayout;
+import org.researchstack.feature.authentication.pincode.ui.SignUpPinCodeCreationStepLayout;
 import org.researchstack.foundation.core.models.step.Step;
 
 public class PassCodeCreationStep extends Step {

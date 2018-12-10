@@ -4,7 +4,7 @@ import android.content.Context;
 
 import org.researchstack.feature.storage.file.aes.ClearEncrypter;
 import org.researchstack.feature.storage.file.aes.Encrypter;
-import org.researchstack.foundation.components.authentication.pincode.PinCodeConfig;
+import org.researchstack.feature.authentication.pincode.PinCodeConfig;
 
 /**
  * Use this class as the EncryptionProvider when you want to store all data without encryption. Pin

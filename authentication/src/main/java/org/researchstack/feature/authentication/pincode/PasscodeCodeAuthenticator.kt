@@ -1,9 +1,8 @@
-package org.researchstack.foundation.components.authentication.pincode
+package org.researchstack.feature.authentication.pincode
 
-import android.content.Context
 import android.support.v4.os.CancellationSignal
-import org.researchstack.foundation.components.authentication.Authenticator
 import java.lang.ref.WeakReference
+import org.researchstack.feature.authentication.Authenticator
 
 //there are two things that need to be delegated
 //how to store the passcode

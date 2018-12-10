@@ -1,10 +1,10 @@
-package org.researchstack.foundation.components.authentication.pincode;
+package org.researchstack.feature.authentication.pincode;
 
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.format.DateUtils;
 
-import org.researchstack.foundation.R;
+import org.researchstack.feature.authentication.R;
 import org.researchstack.foundation.components.utils.TextUtils;
 
 /**
@@ -126,11 +126,11 @@ public class PinCodeConfig {
         @Override
         public int getInputTypeStringId() {
             if (this == PinCodeType.Numeric) {
-                return R.string.rsf_pincode_enter_digit;
+                return R.string.rsfa_pincode_enter_digit;
             } else if (this == PinCodeType.Alphabetic) {
-                return R.string.rsf_pincode_enter_letter;
+                return R.string.rsfa_pincode_enter_letter;
             } else {
-                return R.string.rsf_pincode_enter_character;
+                return R.string.rsfa_pincode_enter_character;
             }
         }
 

@@ -24,7 +24,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    resourcePrefix 'rsst_'
+    resourcePrefix 'rsfs_'
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
@@ -70,6 +70,7 @@ dependencies {
     implementation "com.android.support:design:$support_library_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(':foundation')
+    implementation project(':authentication')
     implementation 'com.google.code.gson:gson:2.4'
     implementation 'com.scottyab:aes-crypto:0.0.3'
     implementation 'co.touchlab.squeaky:squeaky-query:0.4.0.0'

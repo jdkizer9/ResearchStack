@@ -1,5 +1,6 @@
-package org.researchstack.foundation.components.authentication.pincode
+package org.researchstack.feature.authentication.pincode
 
+//This is for demonstration purposes only!
 class SimplePasscodeStore: PasscodeAuthenticator.PasscodeStore {
 
     private var passcode: String? = null

@@ -1,4 +1,4 @@
-package org.researchstack.foundation.components.authentication.pincode.ui;
+package org.researchstack.feature.authentication.pincode.ui;
 
 import android.content.Context;
 import android.support.annotation.CallSuper;
@@ -11,9 +11,9 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.researchstack.foundation.R;
-import org.researchstack.foundation.components.authentication.pincode.PinCodeConfig;
-import org.researchstack.foundation.components.authentication.pincode.PinCodeConfigProvider;
+import org.researchstack.feature.authentication.R;
+import org.researchstack.feature.authentication.pincode.PinCodeConfig;
+import org.researchstack.feature.authentication.pincode.PinCodeConfigProvider;
 import org.researchstack.foundation.components.utils.ViewUtils;
 
 import java.util.Arrays;
@@ -47,10 +47,10 @@ public class PinCodeLayout extends RelativeLayout {
         config = PinCodeConfigProvider.Companion.getPinCodeConfig();
         imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        LayoutInflater.from(getContext()).inflate(R.layout.rsf_step_layout_pincode, this, true);
+        LayoutInflater.from(getContext()).inflate(R.layout.rsfa_step_layout_pincode, this, true);
 
         title = (TextView) findViewById(R.id.title);
-        title.setText(R.string.rsf_pincode_enter_title);
+        title.setText(R.string.rsfa_pincode_enter_title);
 
         resetSummaryText();
 
@@ -75,7 +75,7 @@ public class PinCodeLayout extends RelativeLayout {
     public void resetSummaryText() {
         summary = (TextView) findViewById(R.id.text);
         String characterType = getContext().getString(config.getPinType().getInputTypeStringId());
-        String pinCodeInstructions = getContext().getString(R.string.rsf_pincode_enter_summary,
+        String pinCodeInstructions = getContext().getString(R.string.rsfa_pincode_enter_summary,
                 config.getPinLength(),
                 characterType);
         summary.setText(pinCodeInstructions);

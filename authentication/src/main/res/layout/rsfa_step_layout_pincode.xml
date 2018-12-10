@@ -9,7 +9,7 @@
         style="@style/Foundation.Survey.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/rsf_pincode_enter_title" />
+        android:text="@string/rsfa_pincode_enter_title" />
 
     <TextView
         android:id="@+id/text"
@@ -19,7 +19,7 @@
         android:layout_below="@+id/title"
         android:minHeight="52dp"
         android:paddingTop="@dimen/rsf_padding_small"
-        android:text="@string/rsf_pincode_enter_summary"
+        android:text="@string/rsfa_pincode_enter_summary"
         android:textColorLink="?attr/colorAccent" />
 
     <android.support.v7.widget.AppCompatEditText

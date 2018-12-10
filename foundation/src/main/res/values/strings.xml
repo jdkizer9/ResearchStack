@@ -130,15 +130,6 @@
     <string name="rsf_birth_date_too_old">You must be %1$s years or younger</string>
     <string name="rsf_birth_date_too_young">You must be at least %1$s years old</string>
 
-
-    <!-- Pin Code -->
-    <string name="rsf_pincode_enter_title">Enter your passcode</string>
-    <string name="rsf_pincode_enter_summary">Enter your %1$d-%2$s code to confirm your identity.</string>
-    <string name="rsf_pincode_enter_digit">digit</string>
-    <string name="rsf_pincode_enter_letter">letter</string>
-    <string name="rsf_pincode_enter_character">character</string>
-    <string name="rsf_pincode_enter_error">That code doesn’t match the one you entered, Try again!</string>
-
     <!-- Body Hints -->
     <string name="rsf_hint_step_body_int">Enter a number %1$d-%2$d</string>
     <string name="rsf_hint_step_body_dec">Enter a number %1$.2f-%2$.2f</string>
@@ -162,16 +153,4 @@
     <!-- Button to close error alert when a video cannot be played -->
     <string name="rsf_error_assetvideoview_button">OK</string>
 
-    <!-- Passcode -->
-    <string name="rsf_passcode_change_title">Change Passcode</string>
-    <string name="rsf_passcode">Passcode</string>
-    <string name="rsf_passcode_create_title">Choose a passcode</string>
-    <string name="rsf_passcode_create_summary">Enter a secure, %1$d-%2$s code to protect your data and log in
-        faster.
-    </string>
-    <string name="rsf_passcode_confirm_title">Confirm your passcode</string>
-    <string name="rsf_passcode_confirm_summary">Enter your %1$d-%2$s code one more time to confirm.</string>
-    <string name="rsf_passcode_confirm_error">That code doesn’t match the one you entered. Try again
-        or go back to choose a different %1$d-%2$s code.
-    </string>
 </resources>

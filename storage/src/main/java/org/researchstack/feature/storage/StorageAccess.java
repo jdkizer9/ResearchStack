@@ -10,7 +10,7 @@ import org.researchstack.foundation.components.utils.UiThreadContext;
 import org.researchstack.feature.storage.database.AppDatabase;
 import org.researchstack.feature.storage.file.EncryptionProvider;
 import org.researchstack.feature.storage.file.FileAccess;
-import org.researchstack.foundation.components.authentication.pincode.PinCodeConfig;
+import org.researchstack.feature.authentication.pincode.PinCodeConfig;
 import org.researchstack.feature.storage.file.StorageAccessException;
 import org.researchstack.feature.storage.file.StorageAccessListener;
 

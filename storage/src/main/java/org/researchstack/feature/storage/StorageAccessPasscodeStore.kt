@@ -1,7 +1,7 @@
 package org.researchstack.feature.storage
 
 import android.content.Context
-import org.researchstack.foundation.components.authentication.pincode.PasscodeAuthenticator
+import org.researchstack.feature.authentication.pincode.PasscodeAuthenticator
 
 class StorageAccessPasscodeStore(val context: Context): PasscodeAuthenticator.PasscodeStore {
 
