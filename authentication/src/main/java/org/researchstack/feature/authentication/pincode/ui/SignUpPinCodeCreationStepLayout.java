@@ -4,12 +4,11 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-
-import com.jakewharton.rxbinding.widget.RxTextView;
-
 import org.researchstack.feature.authentication.R;
 import org.researchstack.feature.authentication.pincode.step.PassCodeCreationStep;
 import org.researchstack.foundation.components.common.ui.callbacks.StepCallbacks;
@@ -55,10 +54,18 @@ public class SignUpPinCodeCreationStepLayout extends PinCodeLayout implements St
     private void initializeLayout() {
         refreshState();
 
-        RxTextView.textChanges(editText)
-                .map(CharSequence::toString)
-                .filter(pin -> pin.length() == config.getPinLength())
-                .subscribe(pin -> {
+        TextWatcher pinCodeWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                String pin = s.toString();
+                if (pin.length() == config.getPinLength()) {
+
                     if (state == State.CHANGE) {
                         result.setResultForIdentifier(RESULT_OLD_PIN, pin);
 
@@ -84,7 +91,17 @@ public class SignUpPinCodeCreationStepLayout extends PinCodeLayout implements St
                             refreshState();
                         }
                     }
-                });
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+
+        editText.addTextChangedListener(pinCodeWatcher);
 
         editText.post(() -> imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
                 InputMethodManager.HIDE_IMPLICIT_ONLY));

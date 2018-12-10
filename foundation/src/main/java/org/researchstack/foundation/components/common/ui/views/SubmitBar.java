@@ -11,12 +11,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 //TODO: remove RX dependency
-import com.jakewharton.rxbinding.view.RxView;
+//import com.jakewharton.rxbinding.view.RxView;
 
 import org.researchstack.foundation.R;
 import org.researchstack.foundation.components.utils.ThemeUtils;
 
-import rx.functions.Action1;
+import java.util.function.Consumer;
+
+//import rx.functions.Action1;
 
 public class SubmitBar extends LinearLayout {
     private TextView positiveView;
@@ -67,8 +69,8 @@ public class SubmitBar extends LinearLayout {
         positiveView.setText(title);
     }
 
-    public void setPositiveAction(Action1 submit) {
-        RxView.clicks(this.positiveView).subscribe(submit);
+    public void setPositiveAction(OnClickListener listener) {
+        this.positiveView.setOnClickListener(listener);
     }
 
     public View getPositiveActionView() {
@@ -88,8 +90,8 @@ public class SubmitBar extends LinearLayout {
         negativeView.setText(title);
     }
 
-    public void setNegativeAction(Action1 submit) {
-        RxView.clicks(this.negativeView).subscribe(submit);
+    public void setNegativeAction(OnClickListener listener) {
+        this.negativeView.setOnClickListener(listener);
     }
 
     public View getNegativeActionView() {
