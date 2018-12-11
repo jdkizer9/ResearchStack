@@ -38,18 +38,6 @@
         <attr name="negativeActionColor" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="SignatureView">
-        <attr name="signatureColor" format="color" />
-        <attr name="signaturePrintColor" format="color" />
-        <attr name="signatureStrokeSize" format="dimension" />
-        <attr name="hintText" format="string" />
-        <attr name="hintTextColor" format="color" />
-        <attr name="hintTextSize" format="dimension" />
-        <attr name="guidelineColor" format="color" />
-        <attr name="guidelineMargin" format="dimension" />
-        <attr name="guidelineHeight" format="dimension" />
-    </declare-styleable>
-
     <declare-styleable name="ChartCard">
         <attr name="titleText" format="string" />
         <attr name="titleTextColor" />

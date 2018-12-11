@@ -1,4 +1,4 @@
-package org.researchstack.foundation.components.task;
+package org.researchstack.foundation.components.common.task;
 
 import android.content.Context;
 
