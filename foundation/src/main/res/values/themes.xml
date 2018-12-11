@@ -10,12 +10,6 @@
         <item name="toolbarTheme">@style/Theme.Foundation.Toolbar</item>
         <item name="passcodeTheme">@style/Theme.AppCompat.Light.NoActionBar</item>
         <item name="submitbarStyle">@style/Widget.Foundation.SubmitBar</item>
-        <item name="icontablayoutStyle">@style/Widget.Foundation.IconTabLayout</item>
-        <item name="emptyviewStyle">@style/Widget.Foundation.EmptyView</item>
-        <item name="progressChartCardStyle">@style/Widget.Foundation.Chart.Progress</item>
-        <item name="pieChartCardStyle">@style/Widget.Foundation.Chart.Pie</item>
-        <item name="lineChartCardStyle">@style/Widget.Foundation.Chart.Line</item>
-        <item name="barChartCardStyle">@style/Widget.Foundation.Chart.Bar</item>
     </style>
 
     <style name="Theme.Foundation" parent="Base.Theme.Foundation" />

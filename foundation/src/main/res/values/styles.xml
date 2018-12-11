@@ -29,92 +29,12 @@
         <item name="android:paddingBottom">@dimen/rsf_padding_small</item>
     </style>
 
-    <style name="Widget.Foundation.IconTabLayout" parent="@style/Widget.Design.TabLayout">
-        <item name="android:background">?attr/colorPrimary</item>
-        <item name="android:minHeight">56dp</item>
-        <item name="tabIconColor">@android:color/white</item>
-        <item name="tabIconIndicatorColor">?attr/colorAccent</item>
-        <item name="tabTextColor">@color/rsf_white_60</item>
-        <item name="tabIndicatorColor">@android:color/white</item>
-    </style>
-
-    <style name="Widget.Foundation.TabLayout.Chart" parent="@style/Widget.Design.TabLayout">
-        <item name="android:background">@android:color/transparent</item>
-        <item name="android:paddingRight">50dp</item>
-        <item name="android:clipToPadding">false</item>
-        <item name="android:minHeight">48dp</item>
-        <item name="tabMode">scrollable</item>
-    </style>
-
     <style name="Widget.Foundation.SubmitBar" parent="">
         <item name="android:background">@color/rsf_submit_bar_gray</item>
         <item name="positiveActionTitle">@string/rsf_next</item>
         <item name="negativeActionTitle">@string/rsf_step_skip</item>
         <item name="positiveActionColor">?attr/colorAccent</item>
         <item name="negativeActionColor">@color/rsf_submit_bar_negative</item>
-    </style>
-
-    <style name="Widget.Foundation.EmptyView" parent="">
-        <item name="android:background">#d5e8ff</item>
-        <item name="emptyIcon">@drawable/rsf_illo_dashboard_empty</item>
-        <item name="emptyIconTint">?attr/colorPrimaryDark</item>
-        <item name="emptyText">No data recorded yet…</item>
-        <item name="emptyTextAppearance">@style/TextAppearance.Widget.Foundation.EmptyView</item>
-    </style>
-
-    <style name="TextAppearance.Widget.Foundation.EmptyView" parent="@style/TextAppearance.AppCompat">
-        <item name="android:textColor">?attr/colorPrimaryDark</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="Widget.Foundation.Chart" parent="">
-        <item name="titleText">Amount of pie eaten</item>
-        <item name="titleTextColor">@color/rsf_warm_gray</item>
-        <item name="titleTextSize">14sp</item>
-        <item name="titleTextTypeface">sans-serif-medium</item>
-    </style>
-
-    <style name="Widget.Foundation.Chart.Progress">
-        <item name="centerTextFormat">@string/rsf_chart_progress_center</item>
-        <item name="centerTextColor">?attr/colorPrimary</item>
-        <item name="centerTextSize">20sp</item>
-        <item name="centerTextTypeface">sans-serif-medium</item>
-        <item name="finishText">Finish</item>
-        <item name="finishTextColor">@color/rsf_error</item>
-        <item name="tabIndicatorColor">@color/rsf_tab_indicator</item>
-        <item name="tabTextColor">@color/rsf_tab_text_selected</item>
-        <item name="tabSelectedTextColor">@color/rsf_tab_indicator</item>
-    </style>
-
-    <style name="Widget.Foundation.Chart.Pie">
-        <item name="valueTextFormat">@string/rsf_chart_pie_value</item>
-    </style>
-
-    <style name="Widget.Foundation.Chart.Line">
-        <item name="valueTextFormat">@string/rsf_chart_pie_value</item>
-        <item name="chartXAxisTextColor">@color/rsf_warm_gray</item>
-        <item name="chartXAxisTextSize">14sp</item>
-        <item name="chartXAxisTextTypeface">sans-serif-medium</item>
-        <item name="chartYAxisTextColor">@color/rsf_warm_gray</item>
-        <item name="chartYAxisTextSize">14sp</item>
-        <item name="chartYAxisTextTypeface">sans-serif-medium</item>
-        <item name="expandTintColor">@color/rsf_warm_gray</item>
-    </style>
-
-    <style name="Widget.Foundation.Chart.Bar">
-        <item name="chartXAxisTextColor">@color/rsf_warm_gray</item>
-        <item name="chartXAxisTextSize">14sp</item>
-        <item name="chartXAxisTextTypeface">sans-serif-medium</item>
-        <item name="chartYAxisTextColor">@color/rsf_warm_gray</item>
-        <item name="chartYAxisTextSize">14sp</item>
-        <item name="chartYAxisTextTypeface">sans-serif-medium</item>
-        <item name="expandTintColor">@color/rsf_warm_gray</item>
-    </style>
-
-    <style name="Widget.Foundation.Chart.Title" parent="">
-        <item name="android:padding">16dp</item>
-        <item name="android:minHeight">48dp</item>
-        <item name="android:gravity">center_vertical</item>
     </style>
 
 </resources>
