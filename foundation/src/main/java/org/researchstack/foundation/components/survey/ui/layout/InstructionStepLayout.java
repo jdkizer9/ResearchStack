@@ -12,10 +12,8 @@ import org.researchstack.foundation.components.common.ui.callbacks.StepCallbacks
 import org.researchstack.foundation.components.common.ui.layout.FixedSubmitBarLayout;
 import org.researchstack.foundation.components.common.ui.layout.StepLayout;
 import org.researchstack.foundation.components.common.ui.views.SubmitBar;
-import org.researchstack.foundation.components.common.ui.views.TextViewLinkHandler;
-import org.researchstack.foundation.components.singletons.ResourcePathManager;
+import org.researchstack.foundation.components.singletons.TextViewLinkManager;
 import org.researchstack.foundation.components.utils.TextUtils;
-import org.researchstack.foundation.components.web.ui.activities.ViewWebDocumentActivity;
 import org.researchstack.foundation.core.models.result.StepResult;
 import org.researchstack.foundation.core.models.step.Step;
 
@@ -77,17 +75,9 @@ public class InstructionStepLayout extends FixedSubmitBarLayout implements StepL
                 TextView summary = (TextView) findViewById(R.id.rsf_intruction_text);
                 summary.setVisibility(View.VISIBLE);
                 summary.setText(Html.fromHtml(step.getText()));
-                summary.setMovementMethod(new TextViewLinkHandler() {
-                    @Override
-                    public void onLinkClick(String url) {
-                        String path = ResourcePathManager.getInstance().
-                                generateAbsolutePath(ResourcePathManager.Resource.TYPE_HTML, url);
-                        Intent intent = ViewWebDocumentActivity.newIntentForPath(getContext(),
-                                step.getTitle(),
-                                path);
-                        getContext().startActivity(intent);
-                    }
-                });
+                summary.setMovementMethod(
+                        TextViewLinkManager.Companion.getSharedManager().getHandler(getContext(), step.getTitle())
+                );
             }
 
             // Set Next / Skip
