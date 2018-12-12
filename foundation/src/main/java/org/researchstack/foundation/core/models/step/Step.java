@@ -1,5 +1,6 @@
 package org.researchstack.foundation.core.models.step;
 
+import org.researchstack.foundation.core.interfaces.IStep;
 import org.researchstack.foundation.core.models.task.Task;
 
 import java.io.Serializable;
@@ -20,12 +21,14 @@ import java.io.Serializable;
  * To implement a new type of step, subclass Step and add your additional properties. Separately,
  * subclass StepLayout and implement your user interface.
  */
-public class Step implements Serializable {
+public class Step implements Serializable, IStep {
     private String identifier;
 
     private Class stepLayoutClass;
 
+    @Deprecated()
     private int stepTitle;
+    private String stepTitleString;
 
     private boolean optional = true;
 
@@ -152,6 +155,7 @@ public class Step implements Serializable {
      *
      * @return the id for the title to display in the action bar
      */
+    @Deprecated
     public int getStepTitle() {
         return stepTitle;
     }
@@ -161,8 +165,27 @@ public class Step implements Serializable {
      *
      * @param stepTitle the Android resource id for the title
      */
+    @Deprecated
     public void setStepTitle(int stepTitle) {
         this.stepTitle = stepTitle;
+    }
+
+    /**
+     * Gets the string the title to display in the action bar (optional).
+     *
+     * @return the string for the title to display in the action bar
+     */
+    public String getStepTitleString() {
+        return stepTitleString;
+    }
+
+    /**
+     * Gets the string for the title to display in the action bar (optional).
+     *
+     * @param stepTitle the string for the title
+     */
+    public void setStepTitle(String stepTitle) {
+        this.stepTitleString = stepTitle;
     }
 
     /**

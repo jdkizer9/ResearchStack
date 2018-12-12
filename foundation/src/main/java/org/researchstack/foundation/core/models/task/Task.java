@@ -3,7 +3,11 @@ package org.researchstack.foundation.core.models.task;
 import android.content.Context;
 
 //TODO: remove dependenciy on ViewTaskActivity
+import org.jetbrains.annotations.NotNull;
 import org.researchstack.foundation.components.common.ui.activities.ViewTaskActivity;
+import org.researchstack.foundation.core.interfaces.IResult;
+import org.researchstack.foundation.core.interfaces.IStep;
+import org.researchstack.foundation.core.interfaces.ITask;
 import org.researchstack.foundation.core.models.result.TaskResult;
 import org.researchstack.foundation.core.models.step.Step;
 
@@ -26,7 +30,8 @@ import java.io.Serializable;
  * which corresponds to a single screen that displays multiple questions or items for which
  * participants provide information, such as first name, last name, and birth date.
  */
-public abstract class Task implements Serializable {
+public abstract class Task implements Serializable, ITask<Step, TaskResult> {
+
     private String identifier;
 
     /**
@@ -71,8 +76,14 @@ public abstract class Task implements Serializable {
      * @param step    the current step
      * @return the title to display
      */
+    @Deprecated
     public String getTitleForStep(Context context, Step step) {
         return step.getStepTitle() != 0 ? context.getString(step.getStepTitle()) : "";
+    }
+
+    public String getTitleForStep(Step step) {
+        String titleString = step.getStepTitleString();
+        return  titleString != null ? titleString : "";
     }
 
     /**

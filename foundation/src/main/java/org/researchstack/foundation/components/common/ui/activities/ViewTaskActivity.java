@@ -17,6 +17,8 @@ import org.researchstack.foundation.R;
 import org.researchstack.foundation.components.common.ui.callbacks.StepCallbacks;
 import org.researchstack.foundation.components.common.ui.layout.StepLayout;
 import org.researchstack.foundation.components.common.ui.views.StepSwitcher;
+import org.researchstack.foundation.core.interfaces.IResult;
+import org.researchstack.foundation.core.interfaces.IStep;
 import org.researchstack.foundation.core.models.result.StepResult;
 import org.researchstack.foundation.core.models.result.TaskResult;
 import org.researchstack.foundation.core.models.step.Step;
@@ -218,8 +220,8 @@ public class ViewTaskActivity extends AppCompatActivity implements StepCallbacks
 //    }
 
     @Override
-    public void onSaveStep(int action, Step step, StepResult result) {
-        onSaveStepResult(step.getIdentifier(), result);
+    public void onSaveStep(int action, IStep step, IResult result) {
+        onSaveStepResult(step.getIdentifier(), (StepResult) result);
 
         onExecuteStepAction(action);
     }

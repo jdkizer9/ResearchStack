@@ -1,5 +1,7 @@
 package org.researchstack.foundation.core.models.result;
 
+import org.researchstack.foundation.core.interfaces.IResult;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -21,7 +23,7 @@ import java.util.Date;
  * hold the type of result data the step can generate, unless it makes sense to use an existing
  * subclass.
  */
-public class Result implements Serializable {
+public class Result implements Serializable, IResult {
     private String identifier;
 
     private Date startDate;
