@@ -14,24 +14,27 @@ import org.researchstack.foundation.R
 import org.researchstack.foundation.components.common.ui.callbacks.StepCallbacks
 import org.researchstack.foundation.components.presentation.interfaces.IStepFragment
 import org.researchstack.foundation.components.presentation.interfaces.IStepFragmentProvider
+import org.researchstack.foundation.components.presentation.interfaces.ITaskNavigator
 import org.researchstack.foundation.core.interfaces.IResult
 import org.researchstack.foundation.core.interfaces.IStep
 import org.researchstack.foundation.core.interfaces.ITask
-import org.researchstack.foundation.core.models.result.TaskResult
-import org.researchstack.foundation.core.models.task.Task
 import java.lang.RuntimeException
 import java.util.*
 
-abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, TaskType: ITask<StepType, ResultType>>(): Fragment(), StepCallbacks {
+abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, TaskType: ITask>(): Fragment(), StepCallbacks {
 
-    public var taskProvider: ITaskProvider<StepType, ResultType>? = null
+    public var taskProvider: ITaskProvider? = null
     public var stepFragmentProvider: IStepFragmentProvider? = null
 
     protected var _task: TaskType? = null
     public val task: TaskType
         get() = this._task!!
 
-    public var callback: TaskPresentationCallback<StepType, ResultType, TaskType>? = null
+    protected var _taskNavigator: ITaskNavigator<StepType, ResultType>? = null
+    public val taskNavigator: ITaskNavigator<StepType, ResultType>
+        get() = this._taskNavigator!!
+
+    public var callback: TaskPresentationCallback<ResultType, TaskType>? = null
 
     var _currentStep: StepType? = null
     var _currentFragment: IStepFragment? = null
@@ -69,17 +72,22 @@ abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, Ta
 
     override fun onResume() {
 
-        if (this.currentStep == null) {
-            this._currentStep = this.task.getStepAfterStep(null, this.result)
-        }
+        val currentStep = this.currentStep
 
-        showStep(this.currentStep!!)
+        if (currentStep == null) {
+            this.taskNavigator.getStepAfterStep(null, this.result)?.let { firstStep ->
+                showStep(firstStep)
+            }
+        }
+        else {
+            showStep(currentStep)
+        }
 
         super.onResume()
     }
 
     protected fun showNextStep() {
-        val nextStep = this.task.getStepAfterStep(this.currentStep, this.result)
+        val nextStep = this.taskNavigator.getStepAfterStep(this.currentStep, this.result)
         if (nextStep == null) {
             this.saveAndFinish(false)
         } else {
@@ -88,7 +96,7 @@ abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, Ta
     }
 
     protected fun showPreviousStep() {
-        val previousStep = this.task.getStepBeforeStep(this.currentStep, this.result)
+        val previousStep = this.taskNavigator.getStepBeforeStep(this.currentStep, this.result)
         if (previousStep == null) {
             saveAndFinish(true)
         } else {
@@ -97,25 +105,34 @@ abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, Ta
     }
 
     private fun showStep(step: StepType) {
-        val currentStepPosition = this.task.getProgressOfCurrentStep(this.currentStep!!, this.result)
-                .current
-        val newStepPosition = this.task.getProgressOfCurrentStep(step, this.result).current
+        val currentStepPosition = this.currentStep?.let {
+            this.taskNavigator.getProgressOfCurrentStep(it, this.result).current
+        }
+
+        val newStepPosition = this.taskNavigator.getProgressOfCurrentStep(step, this.result).current
 
         val stepFragment = this.getFragmentForStep(step)
         this._currentFragment = stepFragment
 
         val transaction = childFragmentManager.beginTransaction()
 
-        if (newStepPosition >= currentStepPosition) {
-            transaction.setCustomAnimations(R.anim.rsf_slide_in_right, R.anim.rsf_slide_out_left)
+        if (currentStepPosition != null) {
+            if (newStepPosition > currentStepPosition) {
+                transaction.setCustomAnimations(R.anim.rsf_slide_in_right, R.anim.rsf_slide_out_left)
+            }
+            else {
+                transaction.setCustomAnimations(R.anim.rsf_slide_in_left, R.anim.rsf_slide_out_right)
+            }
+
+            transaction
+                    .replace(R.id.rsf_content_step, stepFragment.fragment)
+                    .commit()
         }
         else {
-            transaction.setCustomAnimations(R.anim.rsf_slide_in_left, R.anim.rsf_slide_out_right)
+            transaction
+                    .add(R.id.rsf_content_step, stepFragment.fragment)
+                    .commit()
         }
-
-        transaction
-                .replace(R.id.rsf_content_step, stepFragment.fragment)
-                .commit()
 
         childFragmentManager.executePendingTransactions()
 
@@ -133,12 +150,12 @@ abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, Ta
 
         // Change the title on the activity
         val title: String = {
-            val title = this.task.getTitleForStep(step)
+            val title = this.taskNavigator.getTitleForStep(step)
             if (title != "") {
                 title
             }
             else {
-                this.task.getTitleForStep(this.activity!!, step)
+                this.taskNavigator.getTitleForStep(this.activity!!, step)
             }
 
         }()

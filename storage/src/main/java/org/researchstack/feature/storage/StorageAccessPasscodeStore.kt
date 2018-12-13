@@ -10,19 +10,19 @@ class StorageAccessPasscodeStore(val context: Context): PasscodeAuthenticator.Pa
     }
 
     override fun registerPasscode(passcode: String) {
-        return StorageAccess.getInstance().createPinCode(context, passcode)
+        StorageAccess.getInstance().createPinCode(context, passcode)
     }
 
     override fun checkPasscode(passcode: String) {
-        return StorageAccess.getInstance().authenticate(context, passcode)
+        StorageAccess.getInstance().authenticate(context, passcode)
     }
 
     override fun removePasscode() {
-        return StorageAccess.getInstance().removePinCode(context)
+        StorageAccess.getInstance().removePinCode(context)
     }
 
     override fun changePasscode(oldPasscode: String, newPasscode: String) {
-        return StorageAccess.getInstance().changePinCode(context, oldPasscode, newPasscode)
+        StorageAccess.getInstance().changePinCode(context, oldPasscode, newPasscode)
     }
 
 }
