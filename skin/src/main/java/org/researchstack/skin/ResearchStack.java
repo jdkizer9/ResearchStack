@@ -3,10 +3,11 @@ package org.researchstack.skin;
 import android.app.Application;
 import android.content.Context;
 
-import org.researchstack.backbone.storage.database.AppDatabase;
-import org.researchstack.backbone.storage.file.EncryptionProvider;
-import org.researchstack.backbone.storage.file.FileAccess;
-import org.researchstack.backbone.storage.file.PinCodeConfig;
+import org.researchstack.feature.authentication.pincode.PinCodeConfig;
+import org.researchstack.feature.storage.StorageAccess;
+import org.researchstack.feature.storage.database.AppDatabase;
+import org.researchstack.feature.storage.file.EncryptionProvider;
+import org.researchstack.feature.storage.file.FileAccess;
 import org.researchstack.skin.notification.NotificationConfig;
 
 /**

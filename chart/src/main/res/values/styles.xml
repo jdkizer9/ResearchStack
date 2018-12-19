@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Widget.Feature.Chart.IconTabLayout" parent="@style/Widget.Design.TabLayout">
-        <item name="android:background">?attr/colorPrimary</item>
-        <item name="android:minHeight">56dp</item>
-        <item name="tabIconColor">@android:color/white</item>
-        <item name="tabIconIndicatorColor">?attr/colorAccent</item>
-        <item name="tabTextColor">@color/rsf_white_60</item>
-        <item name="tabIndicatorColor">@android:color/white</item>
-    </style>
-
     <style name="Widget.Feature.Chart.TabLayout.Chart" parent="@style/Widget.Design.TabLayout">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:paddingRight">50dp</item>

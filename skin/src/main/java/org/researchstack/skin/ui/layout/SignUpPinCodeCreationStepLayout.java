@@ -10,8 +10,12 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.jakewharton.rxbinding.widget.RxTextView;
 
-import org.researchstack.backbone.result.StepResult;
-import org.researchstack.backbone.step.Step;
+import org.researchstack.feature.authentication.pincode.ui.PinCodeLayout;
+import org.researchstack.foundation.components.common.ui.callbacks.StepCallbacks;
+import org.researchstack.foundation.components.common.ui.layout.StepLayout;
+import org.researchstack.foundation.components.utils.ThemeUtils;
+import org.researchstack.foundation.core.models.result.StepResult;
+import org.researchstack.foundation.core.models.step.Step;
 import org.researchstack.skin.R;
 import org.researchstack.skin.step.PassCodeCreationStep;
 

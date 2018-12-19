@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.researchstack.backbone.ui.ViewWebDocumentActivity;
+import org.researchstack.foundation.components.web.ui.activities.ViewWebDocumentActivity;
 import org.researchstack.skin.R;
 import org.researchstack.skin.ResourceManager;
 import org.researchstack.skin.model.SectionModel;

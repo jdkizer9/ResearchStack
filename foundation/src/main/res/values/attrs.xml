@@ -11,6 +11,7 @@
         <attr name="pieChartCardStyle" format="reference" />
         <attr name="lineChartCardStyle" format="reference" />
         <attr name="barChartCardStyle" format="reference" />
+        <attr name="icontablayoutStyle" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="SubmitBar">
@@ -19,6 +20,14 @@
         <attr name="negativeActionTitle" format="string" />
         <attr name="positiveActionColor" format="color" />
         <attr name="negativeActionColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="IconTabLayout">
+        <attr name="android:background" />
+        <attr name="android:minHeight" />
+        <attr name="tabIconColor" format="color" />
+        <attr name="tabIconIndicatorColor" format="color" />
+        <attr name="tabTextColor" />
     </declare-styleable>
 
 </resources>

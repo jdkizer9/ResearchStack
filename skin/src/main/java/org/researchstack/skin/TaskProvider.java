@@ -2,13 +2,14 @@ package org.researchstack.skin;
 
 import android.app.Application;
 
-import org.researchstack.backbone.task.Task;
+import org.researchstack.foundation.components.presentation.ITaskProvider;
+import org.researchstack.foundation.core.models.task.Task;
 
 /**
  * TaskProvider is used as a way for the Framework to get Tasks needed throughout the onboarding
  * process. This allows you to implement your own Tasks if needed.
  */
-public abstract class TaskProvider {
+public abstract class TaskProvider implements ITaskProvider {
     /**
      * Task ID used by the framework for looking up the "initial" task
      */

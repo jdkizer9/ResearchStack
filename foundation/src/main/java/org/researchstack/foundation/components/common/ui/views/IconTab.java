@@ -1,4 +1,4 @@
-package org.researchstack.feature.chart.ui.views;
+package org.researchstack.foundation.components.common.ui.views;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.researchstack.feature.chart.R;
+import org.researchstack.foundation.R;
 
 public class IconTab extends RelativeLayout implements View.OnLongClickListener {
     private TextView title;
@@ -46,7 +46,7 @@ public class IconTab extends RelativeLayout implements View.OnLongClickListener 
     }
 
     private void init() {
-        LayoutInflater.from(getContext()).inflate(R.layout.rsfch_view_icon_tab, this, true);
+        LayoutInflater.from(getContext()).inflate(R.layout.rsf_view_icon_tab, this, true);
 
         title = (TextView) findViewById(R.id.title);
         icon = (ImageView) findViewById(R.id.icon);

@@ -19,7 +19,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.jakewharton.rxbinding.view.RxView;
 
 import org.researchstack.feature.chart.R;
-import org.researchstack.feature.chart.ui.views.IconTabLayout;
+import org.researchstack.foundation.components.common.ui.views.IconTabLayout;
 
 import java.text.NumberFormat;
 import java.util.List;
