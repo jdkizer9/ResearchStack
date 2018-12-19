@@ -3,7 +3,6 @@ package org.researchstack.backbone.answerformat;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.researchstack.backbone.model.Choice;
 
 import static junit.framework.TestCase.assertEquals;
 

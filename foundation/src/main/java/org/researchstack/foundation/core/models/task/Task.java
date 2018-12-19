@@ -2,9 +2,7 @@ package org.researchstack.foundation.core.models.task;
 
 import android.content.Context;
 
-//TODO: remove dependenciy on ViewTaskActivity
 import org.jetbrains.annotations.NotNull;
-import org.researchstack.foundation.components.common.ui.activities.ViewTaskActivity;
 import org.researchstack.foundation.components.presentation.interfaces.ITaskNavigator;
 import org.researchstack.foundation.core.interfaces.ITask;
 import org.researchstack.foundation.core.models.result.TaskResult;
@@ -30,6 +28,10 @@ import java.io.Serializable;
  * participants provide information, such as first name, last name, and birth date.
  */
 public abstract class Task implements Serializable, ITask, ITaskNavigator<Step, TaskResult> {
+
+    public interface TaskLifecycleObserver {
+
+    }
 
     private String identifier;
 
@@ -173,7 +175,7 @@ public abstract class Task implements Serializable, ITask, ITaskNavigator<Step, 
 //     * @param activity    current activity
 //     * @param currentStep the current step being shown
 //     */
-    public void onViewChange(ViewChangeType type, ViewTaskActivity activity, Step currentStep) {
+    public void onViewChange(ViewChangeType type, TaskLifecycleObserver observer, Step currentStep) {
 
     }
 

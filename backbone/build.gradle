@@ -77,7 +77,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation project(':foundation')
-    implementation project(':consent')
+    implementation project(':authentication')
+    implementation project(':storage')
 
     implementation "com.google.code.gson:gson:$gson_version"
     implementation 'io.reactivex:rxjava:1.2.5'

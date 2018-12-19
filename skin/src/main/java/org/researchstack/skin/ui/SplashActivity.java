@@ -3,7 +3,6 @@ package org.researchstack.skin.ui;
 import android.content.Intent;
 import android.os.Bundle;
 
-import org.researchstack.backbone.StorageAccess;
 import org.researchstack.backbone.ui.PinCodeActivity;
 import org.researchstack.backbone.utils.ObservableUtils;
 import org.researchstack.skin.AppPrefs;

@@ -15,13 +15,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.researchstack.backbone.StorageAccess;
 import org.researchstack.backbone.result.TaskResult;
 import org.researchstack.backbone.task.OrderedTask;
 import org.researchstack.backbone.ui.PinCodeActivity;
 import org.researchstack.backbone.ui.ViewTaskActivity;
-import org.researchstack.backbone.utils.ResUtils;
-import org.researchstack.backbone.utils.TextUtils;
 import org.researchstack.skin.AppPrefs;
 import org.researchstack.skin.R;
 import org.researchstack.skin.ResourceManager;
