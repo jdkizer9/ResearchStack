@@ -2,7 +2,10 @@ package org.researchstack.skin;
 
 import android.app.Application;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.researchstack.foundation.components.presentation.ITaskProvider;
+import org.researchstack.foundation.core.interfaces.ITask;
 import org.researchstack.foundation.core.models.task.Task;
 
 /**
@@ -64,6 +67,12 @@ public abstract class TaskProvider implements ITaskProvider {
      * @return a task object with an id of {@param taskId}
      */
     public abstract Task get(String taskId);
+
+    @Nullable
+    @Override
+    public ITask task(@NotNull String identifier) {
+        return this.get(identifier);
+    }
 
     /**
      * Used to store a task object for reuse

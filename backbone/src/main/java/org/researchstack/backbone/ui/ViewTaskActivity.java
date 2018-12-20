@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import org.researchstack.backbone.R;
 import org.researchstack.foundation.components.common.ui.callbacks.StepCallbacks;
 import org.researchstack.foundation.components.common.ui.layout.StepLayout;
-import org.researchstack.foundation.components.common.ui.views.StepSwitcher;
+import org.researchstack.backbone.ui.views.StepSwitcher;
 import org.researchstack.foundation.core.interfaces.IResult;
 import org.researchstack.foundation.core.interfaces.IStep;
 import org.researchstack.foundation.core.models.result.StepResult;

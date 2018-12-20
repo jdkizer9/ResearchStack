@@ -3,7 +3,6 @@
     <style name="Theme.Feature.Chart" parent="Theme.Foundation">
 
         <!-- Custom Styles for Views -->
-        <item name="icontablayoutStyle">@style/Widget.Feature.Chart.IconTabLayout</item>
         <item name="emptyviewStyle">@style/Widget.Feature.Chart.EmptyView</item>
         <item name="progressChartCardStyle">@style/Widget.Feature.Chart.Chart.Progress</item>
         <item name="pieChartCardStyle">@style/Widget.Feature.Chart.Chart.Pie</item>

@@ -10,7 +10,7 @@
 
         <TextView
             android:id="@+id/view_chart_bar_title"
-            style="@style/Widget.Foundation.Chart.Title"
+            style="@style/Widget.Feature.Chart.Chart.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Amount of pie eaten" />

@@ -4,13 +4,6 @@
     <declare-styleable name="Backbone">
         <attr name="passcodeTheme" format="reference" />
         <attr name="toolbarTheme" format="reference" />
-        <attr name="submitbarStyle" format="reference" />
-        <attr name="emptyviewStyle" format="reference" />
-        <attr name="signatureviewStyle" format="reference" />
-        <attr name="progressChartCardStyle" format="reference" />
-        <attr name="pieChartCardStyle" format="reference" />
-        <attr name="lineChartCardStyle" format="reference" />
-        <attr name="barChartCardStyle" format="reference" />
     </declare-styleable>
 
 </resources>

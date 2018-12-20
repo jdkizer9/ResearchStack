@@ -28,6 +28,8 @@ public class StepResult<T> extends Result {
 
     private Map<String, T> results;
 
+    private Step step;
+
     //TODO: See if we can remove this... What if we remove this for foundation, but add it for backwards compat foundation
 //    private AnswerFormat answerFormat;
 
@@ -42,6 +44,7 @@ public class StepResult<T> extends Result {
     public StepResult(Step step) {
         super(step.getIdentifier());
         this.results = new HashMap<>();
+        this.step = step;
 
 //        if (step instanceof QuestionStep) {
 //            answerFormat = ((QuestionStep) step).getAnswerFormat();
@@ -112,4 +115,9 @@ public class StepResult<T> extends Result {
 //    public AnswerFormat getAnswerFormat() {
 //        return answerFormat;
 //    }
+
+    public Step getStep() {
+        return this.step;
+    }
 }
+

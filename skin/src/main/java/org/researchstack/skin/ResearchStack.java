@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import org.researchstack.feature.authentication.pincode.PinCodeConfig;
+import org.researchstack.feature.authentication.pincode.PinCodeConfigProvider;
 import org.researchstack.feature.storage.StorageAccess;
 import org.researchstack.feature.storage.database.AppDatabase;
 import org.researchstack.feature.storage.file.EncryptionProvider;
@@ -53,8 +54,10 @@ public abstract class ResearchStack {
 
         DataProvider.init(concreteResearchStack.createDataProviderImplementation(context));
 
+        PinCodeConfig pinCodeConfig = concreteResearchStack.getPinCodeConfig(context);
+        PinCodeConfigProvider.Companion.config(pinCodeConfig);
         StorageAccess.getInstance()
-                .init(concreteResearchStack.getPinCodeConfig(context),
+                .init(pinCodeConfig,
                         concreteResearchStack.getEncryptionProvider(context),
                         concreteResearchStack.createFileAccessImplementation(context),
                         concreteResearchStack.createAppDatabaseImplementation(context));

@@ -52,7 +52,7 @@ public class ConsentQuizEvaluationStepLayout extends FixedSubmitBarLayout implem
         TextView title = (TextView) findViewById(R.id.rss_quiz_eval_title);
         TextView summary = (TextView) findViewById(R.id.rss_quiz_eval_summary);
 
-        SubmitBar submitBar = (SubmitBar) findViewById(R.id.rsb_submit_bar);
+        SubmitBar submitBar = (SubmitBar) findViewById(R.id.rsf_submit_bar);
         submitBar.getNegativeActionView().setVisibility(View.GONE);
         submitBar.setPositiveAction(v -> callbacks.onSaveStep(StepCallbacks.ACTION_NEXT,
                 step,

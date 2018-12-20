@@ -63,7 +63,7 @@ public class LearnFragment extends Fragment {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             if (viewType == VIEW_TYPE_HEADER) {
-                View view = inflater.inflate(R.layout.preference_category_material, parent, false);
+                View view = inflater.inflate(R.layout.rss_item_section_learn, parent, false);
                 return new HeaderViewHolder(view);
             } else {
                 View view = inflater.inflate(R.layout.rss_item_row_learn, parent, false);
@@ -114,7 +114,7 @@ public class LearnFragment extends Fragment {
 
             public HeaderViewHolder(View itemView) {
                 super(itemView);
-                title = (TextView) itemView;
+                title = (AppCompatTextView) itemView.findViewById(R.id.learn_item_title);
             }
         }
 
