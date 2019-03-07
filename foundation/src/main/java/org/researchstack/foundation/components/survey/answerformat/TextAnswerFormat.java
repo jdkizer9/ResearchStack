@@ -1,6 +1,5 @@
 package org.researchstack.foundation.components.survey.answerformat;
 
-
 /**
  * The TextAnswerFormat class represents the answer format for questions that collect a text
  * response from the user.

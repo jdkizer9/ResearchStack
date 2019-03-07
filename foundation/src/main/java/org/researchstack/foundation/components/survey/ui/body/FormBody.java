@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-
 import org.researchstack.foundation.R;
 import org.researchstack.foundation.components.survey.step.FormStep;
 import org.researchstack.foundation.components.survey.step.QuestionStep;

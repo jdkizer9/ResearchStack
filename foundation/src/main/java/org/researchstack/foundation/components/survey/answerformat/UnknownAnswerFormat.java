@@ -1,6 +1,5 @@
 package org.researchstack.foundation.components.survey.answerformat;
 
-
 @Deprecated
 public class UnknownAnswerFormat extends AnswerFormat {
     public UnknownAnswerFormat() {

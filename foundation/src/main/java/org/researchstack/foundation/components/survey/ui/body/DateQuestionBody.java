@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import org.researchstack.foundation.R;
 import org.researchstack.foundation.components.survey.answerformat.AnswerFormat;
 import org.researchstack.foundation.components.survey.answerformat.DateAnswerFormat;

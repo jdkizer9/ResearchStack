@@ -1,6 +1,5 @@
 package org.researchstack.foundation.components.survey.answerformat;
 
-
 import org.researchstack.foundation.components.survey.model.Choice;
 
 /**
