@@ -1,6 +1,5 @@
 package org.researchstack.foundation.components.survey.answerformat;
 
-
 import org.researchstack.foundation.R;
 import org.researchstack.foundation.components.survey.ui.body.BodyAnswer;
 import org.researchstack.foundation.components.utils.TextUtils;
@@ -55,16 +54,16 @@ public class DecimalAnswerFormat extends AnswerFormat {
         // If no answer is recorded
         if (inputString == null || TextUtils.isEmpty(inputString)) {
             return BodyAnswer.INVALID;
-        } else {
-            // Parse value from editText
-            Float floatAnswer = Float.valueOf(inputString);
-            if (floatAnswer < minValue) {
-                return new BodyAnswer(false,
-                        R.string.rsf_invalid_answer_integer_under, String.valueOf(getMinValue()));
-            } else if (floatAnswer > maxValue) {
-                return new BodyAnswer(false,
-                        R.string.rsf_invalid_answer_integer_over, String.valueOf(getMaxValue()));
-            }
+        }
+
+        // Parse value from editText
+        Float floatAnswer = Float.valueOf(inputString);
+        if (floatAnswer < minValue) {
+            return new BodyAnswer(false,
+                    R.string.rsf_invalid_answer_integer_under, String.valueOf(getMinValue()));
+        } else if (floatAnswer > maxValue) {
+            return new BodyAnswer(false,
+                    R.string.rsf_invalid_answer_integer_over, String.valueOf(getMaxValue()));
         }
 
         return BodyAnswer.VALID;

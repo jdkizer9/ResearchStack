@@ -32,7 +32,7 @@ public class DurationAnswerFormat extends AnswerFormat {
      *
      * @return returns the unit
      */
-    public String egtUnit() {
+    public String getUnit() {
         return unit;
     }
 
