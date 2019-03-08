@@ -55,19 +55,18 @@ public class IntegerAnswerFormat extends AnswerFormat {
         // If no answer is recorded
         if (TextUtils.isEmpty(inputString)) {
             return BodyAnswer.INVALID;
-        } else {
-            // Parse value from editText
-            Integer intAnswer = Integer.valueOf(inputString);
-            if (intAnswer < getMinValue()) {
-                return new BodyAnswer(false,
-                        R.string.rsf_invalid_answer_integer_under,
-                        String.valueOf(getMinValue()));
-            } else if (intAnswer > getMaxValue()) {
-                return new BodyAnswer(false,
-                        R.string.rsf_invalid_answer_integer_over,
-                        String.valueOf(getMaxValue()));
-            }
+        }
 
+        // Parse value from editText
+        Integer intAnswer = Integer.valueOf(inputString);
+        if (intAnswer < getMinValue()) {
+            return new BodyAnswer(false,
+                    R.string.rsf_invalid_answer_integer_under,
+                    String.valueOf(getMinValue()));
+        } else if (intAnswer > getMaxValue()) {
+            return new BodyAnswer(false,
+                    R.string.rsf_invalid_answer_integer_over,
+                    String.valueOf(getMaxValue()));
         }
 
         return BodyAnswer.VALID;

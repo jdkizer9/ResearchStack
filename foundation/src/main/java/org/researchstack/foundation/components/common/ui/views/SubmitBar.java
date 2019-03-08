@@ -16,8 +16,6 @@ import android.widget.TextView;
 import org.researchstack.foundation.R;
 import org.researchstack.foundation.components.utils.ThemeUtils;
 
-import java.util.function.Consumer;
-
 //import rx.functions.Action1;
 
 public class SubmitBar extends LinearLayout {

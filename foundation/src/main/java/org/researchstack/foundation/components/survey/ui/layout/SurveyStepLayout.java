@@ -1,7 +1,6 @@
 package org.researchstack.foundation.components.survey.ui.layout;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;

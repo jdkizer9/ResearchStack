@@ -2,7 +2,6 @@ package org.researchstack.foundation.core.models.task;
 
 import android.content.Context;
 
-import org.jetbrains.annotations.NotNull;
 import org.researchstack.foundation.components.presentation.interfaces.ITaskNavigator;
 import org.researchstack.foundation.core.interfaces.ITask;
 import org.researchstack.foundation.core.models.result.TaskResult;

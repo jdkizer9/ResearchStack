@@ -15,7 +15,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 /**
  * The OrderedTask class implements all the methods in the {@link Task} protocol and represents a
  * task that assumes a fixed order for its steps.

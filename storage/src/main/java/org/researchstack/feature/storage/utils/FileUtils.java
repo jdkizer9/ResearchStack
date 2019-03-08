@@ -1,7 +1,5 @@
 package org.researchstack.feature.storage.utils;
 
-//TODO: MOVE TO STORAGE MODULE
-
 import android.support.annotation.NonNull;
 
 import org.researchstack.feature.storage.file.StorageAccessException;

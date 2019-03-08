@@ -51,7 +51,7 @@ public class StepResult<T> extends Result {
 //        }
         setStartDate(new Date());
         // this will be updated when the result is set
-        setEndDate(new Date());
+        updateEndDate();
     }
 
     public Map<String, T> getResults() {
@@ -78,7 +78,7 @@ public class StepResult<T> extends Result {
      */
     public void setResult(T result) {
         setResultForIdentifier(DEFAULT_KEY, result);
-        setEndDate(new Date());
+        updateEndDate();
     }
 
     /**
@@ -102,6 +102,10 @@ public class StepResult<T> extends Result {
      */
     public void setResultForIdentifier(String identifier, T result) {
         results.put(identifier, result);
+    }
+
+    public void updateEndDate() {
+        setEndDate(new Date());
     }
 
     //TODO: See if we can remove this... What if we remove this for foundation, but add it for backwards compat foundation
