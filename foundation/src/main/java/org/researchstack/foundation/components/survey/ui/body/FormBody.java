@@ -22,12 +22,12 @@ public class FormBody implements StepBody {
     // Constructor Fields
     //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
     private FormStep step;
-    private StepResult<StepResult> result;
+    protected  StepResult<StepResult> result;
 
     //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
     // View Fields
     //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-    private List<StepBody> formStepChildren;
+    protected List<StepBody> formStepChildren;
 
     public FormBody(Step step, StepResult result) {
         this.step = (FormStep) step;
@@ -65,6 +65,7 @@ public class FormBody implements StepBody {
                 result.setResultForIdentifier(childResult.getIdentifier(), childResult);
             }
         }
+        result.updateEndDate();
 
         return result;
     }
