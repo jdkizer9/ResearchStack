@@ -44,6 +44,18 @@ public class NavigationTaskActionHandler(val presentationDelegate: WeakReference
 
 open class TaskActionManager(val actionHandlers: List<TaskActionHandler>) {
 
+
+    //TODO: Add handler callback that shows success or failure
+    //TODO: Add view model support before
+
+    companion object {
+        public fun defaultActionManager(presentationDelegate: NavigationTaskActionHandler.PresentationDelegate): TaskActionManager {
+            val weakDelegate = WeakReference(presentationDelegate)
+            val navigationTaskActionHandler = NavigationTaskActionHandler(weakDelegate)
+            return TaskActionManager(listOf(navigationTaskActionHandler))
+        }
+    }
+
     open fun handleAction(action: TaskAction): Boolean {
 
         for (actionHandler in actionHandlers) {
