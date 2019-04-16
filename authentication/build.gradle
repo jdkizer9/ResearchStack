@@ -128,7 +128,12 @@ if (project.hasProperty("android")) { // Android libraries
     afterEvaluate {
         javadoc.classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
         javadoc.classpath += files(android.libraryVariants.collect { variant ->
-            variant.javaCompile.classpath.files
+            if (variant.hasProperty('javaCompileProvider')) {
+                // Android 3.3.0+
+                variant.javaCompileProvider.get().classpath.files
+            } else {
+                variant.javaCompile.classpath.files
+            }
         })
     }
 } else { // Java libraries
