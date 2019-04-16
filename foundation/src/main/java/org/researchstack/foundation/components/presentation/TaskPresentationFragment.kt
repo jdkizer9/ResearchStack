@@ -21,7 +21,7 @@ import org.researchstack.foundation.core.interfaces.ITask
 import java.lang.RuntimeException
 import java.util.*
 
-abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, TaskType: ITask>(): Fragment(), StepCallbacks {
+abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, TaskType: ITask>(): Fragment(), NavigationTaskActionHandler.PresentationDelegate {
 
     public var taskProvider: ITaskProvider? = null
     public var stepFragmentProvider: IStepFragmentProvider? = null
@@ -45,6 +45,8 @@ abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, Ta
     var _result: ResultType? = null
     val result: ResultType
         get() = this._result!!
+
+    public var actionManager: TaskActionManager? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -79,7 +81,10 @@ abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, Ta
         super.onResume()
     }
 
-    protected fun showNextStep() {
+    override fun showNextStep() {
+
+        this._currentFragment!!.result?.let { setStepResult(this.result, this.currentStep!!.identifier, it) }
+
         val nextStep = this.taskNavigator.getStepAfterStep(this.currentStep, this.result)
         if (nextStep == null) {
             this.saveAndFinish(false)
@@ -88,7 +93,10 @@ abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, Ta
         }
     }
 
-    protected fun showPreviousStep() {
+    override fun showPreviousStep() {
+
+        this._currentFragment!!.result?.let { setStepResult(this.result, this.currentStep!!.identifier, it) }
+
         val previousStep = this.taskNavigator.getStepBeforeStep(this.currentStep, this.result)
         if (previousStep == null) {
             saveAndFinish(true)
@@ -139,7 +147,7 @@ abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, Ta
 
     protected fun getFragmentForStep(step: StepType): IStepFragment {
 
-        val hostFragment = this
+        val actionManager = this.actionManager
 
         // Change the title on the activity
         val title: String = {
@@ -166,7 +174,7 @@ abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, Ta
 
         val stepFragment: IStepFragment = fragment.apply {
             this.initialize(step, stepResult)
-            this.setCallbacks(hostFragment)
+            this.setActionManager(actionManager!!)
         }
 
         return stepFragment
@@ -188,30 +196,30 @@ abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, Ta
         }
     }
 
-    protected fun onExecuteStepAction(action: Int) {
-        if (action == StepCallbacks.ACTION_NEXT) {
-            showNextStep()
-        } else if (action == StepCallbacks.ACTION_PREV) {
-            showPreviousStep()
-        } else if (action == StepCallbacks.ACTION_END) {
-            showConfirmExitDialog()
-        } else if (action == StepCallbacks.ACTION_NONE) {
-            // Used when onSaveInstanceState is called of a view. No action is taken.
-        } else {
-            throw IllegalArgumentException("Action with value " + action + " is invalid. " +
-                    "See StepCallbacks for allowable arguments")
-        }
-    }
-
-    private fun showConfirmExitDialog() {
-        val alertDialog = AlertDialog.Builder(this.activity!!).setTitle(
-                "Are you sure you want to exit?")
-                .setMessage(R.string.lorem_medium)
-                .setPositiveButton("End Task") { dialog, which -> saveAndFinish(true) }
-                .setNegativeButton("Cancel", null)
-                .create()
-        alertDialog.show()
-    }
+//    protected fun onExecuteStepAction(action: Int) {
+//        if (action == StepCallbacks.ACTION_NEXT) {
+//            showNextStep()
+//        } else if (action == StepCallbacks.ACTION_PREV) {
+//            showPreviousStep()
+//        } else if (action == StepCallbacks.ACTION_END) {
+//            showConfirmExitDialog()
+//        } else if (action == StepCallbacks.ACTION_NONE) {
+//            // Used when onSaveInstanceState is called of a view. No action is taken.
+//        } else {
+//            throw IllegalArgumentException("Action with value " + action + " is invalid. " +
+//                    "See StepCallbacks for allowable arguments")
+//        }
+//    }
+//
+//    private fun showConfirmExitDialog() {
+//        val alertDialog = AlertDialog.Builder(this.activity!!).setTitle(
+//                "Are you sure you want to exit?")
+//                .setMessage(R.string.lorem_medium)
+//                .setPositiveButton("End Task") { dialog, which -> saveAndFinish(true) }
+//                .setNegativeButton("Cancel", null)
+//                .create()
+//        alertDialog.show()
+//    }
 
     public fun onBackPressed() {
         notifyStepOfBackPress()
@@ -222,13 +230,13 @@ abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, Ta
     }
 
 
-    override fun onSaveStep(action: Int, step: IStep, result: IResult?) {
-        result?.let { setStepResult(this.result, step.identifier, it) }
-        onExecuteStepAction(action)
-    }
-
-    override fun onCancelStep() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+//    override fun onSaveStep(action: Int, step: IStep, result: IResult?) {
+//        result?.let { setStepResult(this.result, step.identifier, it) }
+//        onExecuteStepAction(action)
+//    }
+//
+//    override fun onCancelStep() {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//    }
 
 }

@@ -12,7 +12,7 @@ import org.researchstack.foundation.core.models.step.Step
 import org.researchstack.foundation.core.models.task.Task
 import java.util.*
 
-open class BackwardsCompatibleTaskPresentationFragment: TaskPresentationFragment<Step, TaskResult, Task>(), StepCallbacks {
+open class BackwardsCompatibleTaskPresentationFragment: TaskPresentationFragment<Step, TaskResult, Task>() {
 
     companion object {
         val EXTRA_TASK_IDENTIFIER = "BackwardsCompatibleTaskPresentationFragment.ExtraTaskIdentifier"
