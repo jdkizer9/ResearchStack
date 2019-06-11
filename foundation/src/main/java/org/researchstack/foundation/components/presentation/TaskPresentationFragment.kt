@@ -15,6 +15,7 @@ import org.researchstack.foundation.components.common.ui.callbacks.StepCallbacks
 import org.researchstack.foundation.components.presentation.interfaces.IStepFragment
 import org.researchstack.foundation.components.presentation.interfaces.IStepFragmentProvider
 import org.researchstack.foundation.components.presentation.interfaces.ITaskNavigator
+import org.researchstack.foundation.components.presentation.interfaces.ITaskNavigatorProvider
 import org.researchstack.foundation.core.interfaces.IResult
 import org.researchstack.foundation.core.interfaces.IStep
 import org.researchstack.foundation.core.interfaces.ITask
@@ -24,6 +25,7 @@ import java.util.*
 abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, TaskType: ITask>(): androidx.fragment.app.Fragment(), StepCallbacks {
 
     public var taskProvider: ITaskProvider? = null
+    public var taskNavigatorProvider: ITaskNavigatorProvider<StepType, ResultType>? = null
     public var stepFragmentProvider: IStepFragmentProvider? = null
 
     protected var _task: TaskType? = null
@@ -31,8 +33,11 @@ abstract class TaskPresentationFragment<StepType: IStep, ResultType: IResult, Ta
         get() = this._task!!
 
     protected var _taskNavigator: ITaskNavigator<StepType, ResultType>? = null
-    public val taskNavigator: ITaskNavigator<StepType, ResultType>
+    public var taskNavigator: ITaskNavigator<StepType, ResultType>
         get() = this._taskNavigator!!
+        set(value) {
+            this._taskNavigator = value
+        }
 
     public var callback: TaskPresentationCallback<ResultType, TaskType>? = null
 
