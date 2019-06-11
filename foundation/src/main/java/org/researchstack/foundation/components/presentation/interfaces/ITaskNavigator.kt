@@ -3,6 +3,7 @@ package org.researchstack.foundation.components.presentation.interfaces
 import android.content.Context
 import org.researchstack.foundation.core.interfaces.IResult
 import org.researchstack.foundation.core.interfaces.IStep
+import org.researchstack.foundation.core.interfaces.ITask
 import org.researchstack.foundation.core.models.task.Task
 
 interface ITaskNavigator<StepType: IStep, ResultType: IResult> {
@@ -14,4 +15,8 @@ interface ITaskNavigator<StepType: IStep, ResultType: IResult> {
     fun getStepBeforeStep(step: StepType?, result: ResultType): StepType?
     fun getProgressOfCurrentStep(step: StepType, result: ResultType): Task.TaskProgress
     fun validateParameters()
+}
+
+interface ITaskNavigatorProvider<StepType: IStep, ResultType: IResult> {
+    fun taskNavigator(identifier: String): ITaskNavigator<StepType, ResultType>?
 }

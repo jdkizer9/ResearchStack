@@ -53,6 +53,8 @@ class FoundationTaskProvider(val context: Context): ITaskProvider {
         val FORM_NAME = "form_name"
         val SAMPLE_SURVEY = "sample_survey"
         val PIN_CODE = "pin_code"
+
+        val NAVIGATION_TASK = "navigation_task"
     }
     
     override fun task(identifier: String): ITask? {
@@ -64,6 +66,9 @@ class FoundationTaskProvider(val context: Context): ITaskProvider {
         }
         else if (identifier == FoundationTaskProvider.PIN_CODE) {
             return this.createPinCodeRegistrationTask()
+        }
+        else if (identifier == FoundationTaskProvider.NAVIGATION_TASK) {
+            return this.createNavigableTask()
         }
         else {
             return null
@@ -189,6 +194,38 @@ class FoundationTaskProvider(val context: Context): ITaskProvider {
         // Create a task wrapping the steps.
         val task = OrderedTask(FoundationTaskProvider.PIN_CODE, pinCodeStep)
         return task
+
+    }
+
+    private fun createNavigableTask(): Task {
+        // Create a Boolean step to include in the task.
+        val booleanStep = QuestionStep("should_skip")
+        booleanStep.title = "Should we skip the next step?"
+        booleanStep.answerFormat = BooleanAnswerFormat(context.getString(R.string.rsf_yes),
+                context.getString(R.string.rsf_no))
+        booleanStep.isOptional = false
+
+        val step2 = InstructionStep(
+                "step_2",
+                "Step 2",
+                ""
+        )
+
+        val step3 = InstructionStep(
+                "step_3",
+                "Step 3",
+                ""
+        )
+
+        val task = OrderedTask(
+                FoundationTaskProvider.NAVIGATION_TASK,
+                booleanStep,
+                step2,
+                step3
+        )
+
+        return task
+
 
     }
 }

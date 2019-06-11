@@ -24,9 +24,14 @@ import org.researchstack.foundation.components.presentation.TaskPresentationCall
 import org.researchstack.foundation.components.presentation.compatibility.BackwardsCompatibleStepFragmentProvider
 import org.researchstack.foundation.components.presentation.compatibility.BackwardsCompatibleStepLayoutProvider
 import org.researchstack.foundation.components.presentation.compatibility.BackwardsCompatibleTaskPresentationFragment
+import org.researchstack.foundation.components.presentation.interfaces.ITaskNavigator
 import org.researchstack.foundation.components.utils.LogExt
+import org.researchstack.foundation.core.interfaces.IResult
+import org.researchstack.foundation.core.interfaces.IStep
 import org.researchstack.foundation.core.models.result.TaskResult
+import org.researchstack.foundation.core.models.step.Step
 import org.researchstack.foundation.core.models.task.Task
+import org.researchstack.foundationexampleapp.FoundationTaskNavigatorProvider
 import org.researchstack.foundationexampleapp.R
 
 class MainActivity : AppCompatActivity(), StorageAccessListener, PasscodeAuthenticator.PresentationDelegate {
@@ -41,6 +46,7 @@ class MainActivity : AppCompatActivity(), StorageAccessListener, PasscodeAuthent
     private var taskPresentationFragment: BackwardsCompatibleTaskPresentationFragment? = null
 
     val taskProvider = FoundationTaskProvider(this)
+    val taskNavigatorProvider = FoundationTaskNavigatorProvider(this, this.taskProvider)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -198,6 +204,7 @@ class MainActivity : AppCompatActivity(), StorageAccessListener, PasscodeAuthent
 
         val taskPresentationFragment = BackwardsCompatibleTaskPresentationFragment.newInstance(taskIdentifier, stepFragmentProvider, callback)
         taskPresentationFragment.taskProvider = this.taskProvider
+        taskPresentationFragment.taskNavigatorProvider = this.taskNavigatorProvider
 
         this.taskPresentationFragment = taskPresentationFragment
 
@@ -309,7 +316,7 @@ class MainActivity : AppCompatActivity(), StorageAccessListener, PasscodeAuthent
     // Survey Stuff
 
     private fun launchSurvey() {
-        this.launchTask(FoundationTaskProvider.SAMPLE_SURVEY)
+        this.launchTask(FoundationTaskProvider.NAVIGATION_TASK)
     }
 
     private fun processSurveyResult(result: TaskResult) {
@@ -336,4 +343,79 @@ class MainActivity : AppCompatActivity(), StorageAccessListener, PasscodeAuthent
 
 
 
+}
+
+public interface ConditionalNavigationRulePredicate<ResultType: IResult, EvaluationContext: Any> {
+    fun evaluate(result: ResultType, additionalContext: EvaluationContext?): Boolean
+}
+
+public interface ConditionalNavigationRule<ResultType: IResult, EvaluationContext: Any> {
+    val predicate: ConditionalNavigationRulePredicate<ResultType, EvaluationContext>
+    val destinationStepIdentifier: String
+}
+
+public interface INavigationRule<StepType: IStep, ResultType: IResult> {
+    //adding navigator in order to be able to vend step associated with identifier
+    fun getStepAfterStep(navigator: ITaskNavigator<StepType, ResultType>, result: ResultType): StepType?
+    fun getStepBeforeStep(navigator: ITaskNavigator<StepType, ResultType>, result: ResultType): StepType?
+}
+
+public class NavigationRule(
+        val defaultDestinationStepIdentifier: String,
+        val conditionalNavigationRules: List<ConditionalNavigationRule<TaskResult, Any>>,
+        val getAdditionalContext: () -> Any?
+): INavigationRule<Step, TaskResult> {
+
+    override fun getStepAfterStep(navigator: ITaskNavigator<Step, TaskResult>, result: TaskResult): Step? {
+        val additionalContext = getAdditionalContext()
+        for (conditionalNavigationRule in conditionalNavigationRules) {
+            if (conditionalNavigationRule.predicate.evaluate(result, additionalContext)) {
+                return navigator.getStepWithIdentifier(conditionalNavigationRule.destinationStepIdentifier)
+            }
+        }
+
+        return navigator.getStepWithIdentifier(defaultDestinationStepIdentifier)
+    }
+
+    override fun getStepBeforeStep(navigator: ITaskNavigator<Step, TaskResult>, result: TaskResult): Step? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+}
+
+public class ConditionalTaskNavigator(val task: Task, val navigationRuleMap: Map<String, INavigationRule<Step, TaskResult>>): ITaskNavigator<Step, TaskResult> {
+
+    override fun getTitleForStep(context: Context, step: Step): String {
+        return task.getTitleForStep(context, step)
+    }
+
+    override fun getTitleForStep(step: Step): String {
+        return task.getTitleForStep(step)
+    }
+
+    override fun getStepWithIdentifier(identifier: String): Step? {
+        return task.getStepWithIdentifier(identifier)
+    }
+
+    override fun getStepAfterStep(step: Step?, result: TaskResult): Step? {
+
+        return step?.identifier.let { stepIdentifier ->
+            this.navigationRuleMap[stepIdentifier]?.getStepAfterStep(this, result)
+        } ?: task.getStepAfterStep(step, result)
+
+    }
+
+    override fun getStepBeforeStep(step: Step?, result: TaskResult): Step? {
+        TODO("do we need to implement a stack here??") //To change body of created functions use File | Settings | File Templates.
+        return step?.identifier.let { stepIdentifier ->
+            this.navigationRuleMap[stepIdentifier]?.getStepBeforeStep(this, result)
+        } ?: task.getStepBeforeStep(step, result)
+    }
+
+    override fun getProgressOfCurrentStep(step: Step, result: TaskResult): Task.TaskProgress {
+        return task.getProgressOfCurrentStep(step, result)
+    }
+
+    override fun validateParameters() {
+        return task.validateParameters()
+    }
 }

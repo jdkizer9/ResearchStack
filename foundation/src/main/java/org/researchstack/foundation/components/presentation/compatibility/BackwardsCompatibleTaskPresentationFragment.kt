@@ -40,18 +40,18 @@ open class BackwardsCompatibleTaskPresentationFragment: TaskPresentationFragment
         if (savedInstanceState == null) {
             val taskIdentifier: String = this.arguments!!.getString(BackwardsCompatibleTaskPresentationFragment.EXTRA_TASK_IDENTIFIER)!!
             this._task = this.taskProvider!!.task(taskIdentifier) as Task
-            this._taskNavigator = this.task
+            this.taskNavigator = this.taskNavigatorProvider!!.taskNavigator(taskIdentifier)!!
             this._result = TaskResult(this.task.identifier)
             this.result.setStartDate(Date())
         } else {
             val taskIdentifier: String = savedInstanceState.getString(BackwardsCompatibleTaskPresentationFragment.EXTRA_TASK_IDENTIFIER)!!
             this._task = this.taskProvider!!.task(taskIdentifier) as Task
-            this._taskNavigator = this.task
+            this.taskNavigator = this.taskNavigatorProvider!!.taskNavigator(taskIdentifier)!!
             this._result = savedInstanceState.getSerializable(BackwardsCompatibleTaskPresentationFragment.EXTRA_TASK_RESULT) as TaskResult
             this._currentStep = savedInstanceState.getSerializable(BackwardsCompatibleTaskPresentationFragment.EXTRA_STEP) as Step
         }
 
-        this.task.validateParameters()
+        this.taskNavigator.validateParameters()
     }
 
     override fun getStepResult(taskResult: TaskResult, stepIdentifier: String): IResult? {
