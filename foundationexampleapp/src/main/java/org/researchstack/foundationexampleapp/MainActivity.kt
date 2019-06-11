@@ -354,35 +354,36 @@ public interface ConditionalNavigationRule<ResultType: IResult, EvaluationContex
     val destinationStepIdentifier: String
 }
 
-public interface INavigationRule<StepType: IStep, ResultType: IResult> {
+public interface INavigationRule<ResultType: IResult> {
     //adding navigator in order to be able to vend step associated with identifier
-    fun getStepAfterStep(navigator: ITaskNavigator<StepType, ResultType>, result: ResultType): StepType?
-    fun getStepBeforeStep(navigator: ITaskNavigator<StepType, ResultType>, result: ResultType): StepType?
+    fun getStepIdentifierAfterStep(result: ResultType): String?
+    fun getStepIdentifierBeforeStep(result: ResultType): String?
 }
 
 public class NavigationRule(
         val defaultDestinationStepIdentifier: String,
         val conditionalNavigationRules: List<ConditionalNavigationRule<TaskResult, Any>>,
         val getAdditionalContext: () -> Any?
-): INavigationRule<Step, TaskResult> {
+): INavigationRule<TaskResult> {
 
-    override fun getStepAfterStep(navigator: ITaskNavigator<Step, TaskResult>, result: TaskResult): Step? {
+    override fun getStepIdentifierBeforeStep(result: TaskResult): String? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getStepIdentifierAfterStep(result: TaskResult): String? {
         val additionalContext = getAdditionalContext()
         for (conditionalNavigationRule in conditionalNavigationRules) {
             if (conditionalNavigationRule.predicate.evaluate(result, additionalContext)) {
-                return navigator.getStepWithIdentifier(conditionalNavigationRule.destinationStepIdentifier)
+                return conditionalNavigationRule.destinationStepIdentifier
             }
         }
 
-        return navigator.getStepWithIdentifier(defaultDestinationStepIdentifier)
+        return defaultDestinationStepIdentifier
     }
 
-    override fun getStepBeforeStep(navigator: ITaskNavigator<Step, TaskResult>, result: TaskResult): Step? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }
 
-public class ConditionalTaskNavigator(val task: Task, val navigationRuleMap: Map<String, INavigationRule<Step, TaskResult>>): ITaskNavigator<Step, TaskResult> {
+public class ConditionalTaskNavigator(val task: Task, val navigationRuleMap: Map<String, INavigationRule<TaskResult>>): ITaskNavigator<Step, TaskResult> {
 
     override fun getTitleForStep(context: Context, step: Step): String {
         return task.getTitleForStep(context, step)
@@ -399,7 +400,9 @@ public class ConditionalTaskNavigator(val task: Task, val navigationRuleMap: Map
     override fun getStepAfterStep(step: Step?, result: TaskResult): Step? {
 
         return step?.identifier.let { stepIdentifier ->
-            this.navigationRuleMap[stepIdentifier]?.getStepAfterStep(this, result)
+            this.navigationRuleMap[stepIdentifier]?.getStepIdentifierAfterStep(result)
+        }?.let { stepIdentifier ->
+            this.getStepWithIdentifier(stepIdentifier)
         } ?: task.getStepAfterStep(step, result)
 
     }
@@ -407,7 +410,9 @@ public class ConditionalTaskNavigator(val task: Task, val navigationRuleMap: Map
     override fun getStepBeforeStep(step: Step?, result: TaskResult): Step? {
         TODO("do we need to implement a stack here??") //To change body of created functions use File | Settings | File Templates.
         return step?.identifier.let { stepIdentifier ->
-            this.navigationRuleMap[stepIdentifier]?.getStepBeforeStep(this, result)
+            this.navigationRuleMap[stepIdentifier]?.getStepIdentifierBeforeStep(result)
+        }?.let { stepIdentifier ->
+            this.getStepWithIdentifier(stepIdentifier)
         } ?: task.getStepBeforeStep(step, result)
     }
 
