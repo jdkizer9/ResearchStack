@@ -9,13 +9,18 @@ import org.researchstack.feature.consent.step.ConsentDocumentStep
 import org.researchstack.feature.consent.step.ConsentSignatureStep
 import org.researchstack.feature.consent.step.ConsentVisualStep
 import org.researchstack.feature.consent.ui.layout.ConsentSignatureStepLayout
+import org.researchstack.feature.survey.answerformat.*
+import org.researchstack.feature.survey.model.Choice
+import org.researchstack.feature.survey.step.FormStep
+import org.researchstack.feature.survey.step.QuestionStep
 import org.researchstack.foundation.components.common.task.OrderedTask
 import org.researchstack.foundation.components.presentation.ITaskProvider
-import org.researchstack.foundation.components.survey.answerformat.*
-import org.researchstack.foundation.components.survey.model.Choice
-import org.researchstack.foundation.components.survey.step.FormStep
 import org.researchstack.foundation.components.survey.step.InstructionStep
-import org.researchstack.foundation.components.survey.step.QuestionStep
+//import org.researchstack.foundation.components.survey.answerformat.*
+//import org.researchstack.foundation.components.survey.model.Choice
+//import org.researchstack.foundation.components.survey.step.FormStep
+//import org.researchstack.foundation.components.survey.step.InstructionStep
+//import org.researchstack.foundation.components.survey.step.QuestionStep
 import org.researchstack.foundation.core.interfaces.ITask
 import org.researchstack.foundation.core.models.task.Task
 import org.researchstack.foundationexampleapp.R
@@ -110,7 +115,7 @@ class FoundationTaskProvider(val context: Context): ITaskProvider {
         documentStep.confirmMessage = context.getString(R.string.rsfc_consent_review_reason)
 
         // Create Consent form step, to get users first & last name
-        val formStep = FormStep(FoundationTaskProvider.SIGNATURE_FORM_STEP,
+        val formStep = FormStep(SIGNATURE_FORM_STEP,
                 "Form Title",
                 "Form step description")
         formStep.stepTitle = R.string.rsfc_consent
@@ -118,7 +123,7 @@ class FoundationTaskProvider(val context: Context): ITaskProvider {
         val format = TextAnswerFormat()
         format.setIsMultipleLines(false)
 
-        val fullName = QuestionStep(FoundationTaskProvider.NAME, "Full name", format)
+        val fullName = QuestionStep(NAME, "Full name", format)
         formStep.formSteps = listOf(fullName)
 
         // Create Consent signature step, user can sign their name
@@ -141,7 +146,7 @@ class FoundationTaskProvider(val context: Context): ITaskProvider {
     }
 
     private fun createSurveyTask(): Task {
-        val instructionStep = InstructionStep(FoundationTaskProvider.INSTRUCTION,
+        val instructionStep = InstructionStep(INSTRUCTION,
                 "Selection Survey",
                 "This survey can help us understand your eligibility for the fitness study")
         instructionStep.stepTitle = R.string.survey

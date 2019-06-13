@@ -39,6 +39,7 @@ dependencies {
     implementation project(':authentication')
     implementation project(':consent')
     implementation project(':storage')
+    implementation project(':survey')
 
     implementation 'net.zetetic:android-database-sqlcipher:3.5.4@aar'
     implementation 'co.touchlab.squeaky:squeaky-query:0.4.0.0'
