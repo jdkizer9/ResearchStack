@@ -1,0 +1,125 @@
+package org.researchstack.feature.survey.ui.body;
+
+import android.text.InputFilter;
+import android.text.InputType;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.annotation.LayoutRes;
+
+import com.jakewharton.rxbinding.widget.RxTextView;
+
+import org.researchstack.feature.survey.R;
+import org.researchstack.feature.survey.answerformat.TextAnswerFormat;
+import org.researchstack.feature.survey.step.QuestionStep;
+import org.researchstack.foundation.components.utils.TextUtils;
+import org.researchstack.foundation.components.utils.ViewUtils;
+import org.researchstack.foundation.core.models.result.StepResult;
+import org.researchstack.foundation.core.models.step.Step;
+
+public class TextQuestionBody implements StepBody {
+    //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+    // Constructor Fields
+    //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+    protected QuestionStep step;
+    protected StepResult<String> result;
+
+    //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+    // View Fields
+    //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+    protected EditText editText;
+    public EditText getEditText() {
+        return editText;
+    }
+
+    public TextQuestionBody(Step step, StepResult result) {
+        this.step = (QuestionStep) step;
+        this.result = result == null ? new StepResult<>(step) : result;
+    }
+
+    public @LayoutRes
+    int getBodyViewRes() {
+        return R.layout.rsb_item_edit_text_compact;
+    }
+
+    @Override
+    public View getBodyView(int viewType, LayoutInflater inflater, ViewGroup parent) {
+        View body = inflater.inflate(getBodyViewRes(), parent, false);
+
+        // Format EditText from TextAnswerFormat
+        TextAnswerFormat format = (TextAnswerFormat) step.getAnswerFormat();
+
+        editText = (EditText) body.findViewById(R.id.value);
+        if (step.getPlaceholder() != null) {
+            editText.setHint(step.getPlaceholder());
+        } else if (format.getHintText() != null) {
+            editText.setHint(format.getHintText());
+        }
+        editText.setEnabled(true);
+        if (format.isDisabled()) {
+            editText.setEnabled(false);
+        }
+
+        TextView title = (TextView) body.findViewById(R.id.label);
+
+        // TODO: naming is confusing... compact means less, but this adds a view -MDP
+        if (viewType == VIEW_TYPE_COMPACT) {
+            title.setText(step.getTitle());
+        } else {
+            title.setVisibility(View.GONE);
+        }
+
+        // Restore previous result
+        String stringResult = result.getResult();
+        if (!TextUtils.isEmpty(stringResult)) {
+            editText.setText(stringResult);
+        }
+
+        // Set result on text change
+        RxTextView.textChanges(editText).subscribe(text -> {
+            result.setResult(text.toString());
+        });
+
+        if(format.isMultipleLines()) {
+            editText.setSingleLine(false);
+            editText.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+            editText.setHorizontallyScrolling(false);
+            editText.setLines(5);
+        } else {
+            editText.setSingleLine(false);
+        }
+
+        if (format.getMaximumLength() > TextAnswerFormat.UNLIMITED_LENGTH) {
+            InputFilter.LengthFilter maxLengthFilter = new InputFilter.LengthFilter(format.getMaximumLength());
+            InputFilter[] filters = ViewUtils.addFilter(editText.getFilters(), maxLengthFilter);
+            editText.setFilters(filters);
+        }
+
+        editText.setInputType(format.getInputType());
+
+        return body;
+    }
+
+    @Override
+    public StepResult getStepResult(boolean skipped) {
+        if (skipped) {
+            result.setResult(null);
+        }
+
+        return result;
+    }
+
+    @Override
+    public BodyAnswer getBodyAnswerState() {
+        TextAnswerFormat format = (TextAnswerFormat) step.getAnswerFormat();
+        if (!format.isAnswerValid(editText.getText().toString())) {
+            return BodyAnswer.INVALID;
+        }
+
+        return BodyAnswer.VALID;
+    }
+
+}
